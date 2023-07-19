@@ -1,6 +1,6 @@
 image:
   repository: 076831690411.dkr.ecr.ap-northeast-2.amazonaws.com/neodohae_nestjs
-  tag: 1cae6186c9c0da3bc253ba2baed7b8a4565ece28
+  tag: a0bbbdbf57eda3511bcc7ada44ec98cb12150641
   port: 4200
 service:
   name: neodohae-nestjs-service
