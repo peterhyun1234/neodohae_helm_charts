@@ -1,6 +1,6 @@
 image:
   repository: 076831690411.dkr.ecr.ap-northeast-2.amazonaws.com/neodohae_spring_boot
-  tag: d91f25cf75c0414edc390e2db4624f63199cf9e4
+  tag: ac3f07df7c246c7a4be42d83dd8a1b5422230e01
   port: 4300
 service:
   name: neodohae-spring-boot-service
