@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: neodohae-spring-boot-deployment
+  labels:
+    app: neodohae-spring-boot
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: neodohae-spring-boot
+  strategy:
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        app: neodohae-spring-boot
+    spec:
+      containers:
+      - name: neodohae-spring-boot
+        image: {{ .Values.image.repository }}:{{ .Values.image.tag }}
+        ports:
+        - containerPort: {{ .Values.image.port }}
+        livenessProbe:
+          httpGet:
+            path: /
+            port: {{ .Values.image.port }}
+          initialDelaySeconds: 30
+          periodSeconds: 10

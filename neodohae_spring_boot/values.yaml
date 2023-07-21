@@ -1,0 +1,14 @@
+image:
+  repository: 076831690411.dkr.ecr.ap-northeast-2.amazonaws.com/neodohae_spring_boot
+  tag: latest
+  port: 4300
+service:
+  name: neodohae-spring-boot-service
+  type: LoadBalancer
+  port: 80
+  targetPort: 4300
+hpa:
+  minReplicas: 2
+  maxReplicas: 10
+  targetCPUUtilization: 70
+  targetMemoryUtilization: 70
