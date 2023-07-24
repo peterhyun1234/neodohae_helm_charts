@@ -1,0 +1,40 @@
+# Ingress 생성 기 alb가 제대로 생성되지 않는 에러가 있음. 그래서 argo, grafana, spring-boot는 alb에서 직접 등록
+# 서비스 생성시 target group에 반영되기 때문에 포트로 찾을 수 있음
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: neodohae-ingress
+  annotations:
+    kubernetes.io/ingress.class: alb
+    alb.ingress.kubernetes.io/scheme: internet-facing
+    alb.ingress.kubernetes.io/target-type: ip
+    alb.ingress.kubernetes.io/listen-ports: '[{"HTTP": 80}, {"HTTPS":443}]'
+    alb.ingress.kubernetes.io/certificate-arn: arn:aws:acm:ap-northeast-2:076831690411:certificate/bd15d2f3-8a51-4a8e-b7f9-d9a76f2d1d74
+    alb.ingress.kubernetes.io/ssl-redirect: '443'
+spec:
+  rules:
+  - host: neodohae.com
+    http:
+      paths:
+      - backend:
+          service:
+            name: neodohae-nextjs-service
+            port:
+              number: 80
+        path: /
+        pathType: Prefix
+  - host: api.neodohae.com
+    http:
+      paths:
+      - backend:
+          service:
+            name: neodohae-nestjs-service
+            port:
+              number: 80
+        path: /
+        pathType: Prefix
+  defaultBackend:
+    service:
+      name: neodohae-nextjs-service
+      port:
+        number: 80
