@@ -1,6 +1,6 @@
 image:
   repository: 076831690411.dkr.ecr.ap-northeast-2.amazonaws.com/neodohae_nextjs
-  tag: daefe6e9caa3e657f84d6c0fc18152c1247e4127
+  tag: 5e6f9c899eb1aed79bc1f063ceac1221b1d58a43
   port: 4100
 service:
   name: neodohae-nextjs-service
